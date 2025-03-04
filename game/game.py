@@ -4,7 +4,6 @@ import time
 from game.settings import *
 from game.snake import Snake
 from game.food import Food
-from game.snake_ai import SnakeAI
 
 class Game:
     def __init__(self):
@@ -13,8 +12,7 @@ class Game:
         self.clock = pygame.time.Clock()
         self.font = pygame.font.Font(None, 36)
         self.last_move_time = time.time()
-        self.move_delay = 0.15  # Delay between moves in seconds (adjust this to change speed)
-        self.ai = SnakeAI(self) if AI_ENABLED else None
+        self.move_delay = 0.15  # Delay between moves in seconds
         self.reset_game()
 
     def reset_game(self):
@@ -30,32 +28,25 @@ class Game:
                 pygame.quit()
                 sys.exit()
 
-            # Only handle keyboard input if AI is disabled
-            if not AI_ENABLED:
-                if event.type == pygame.KEYDOWN:
-                    if self.game_over:
-                        if event.key == pygame.K_SPACE:
-                            self.reset_game()
-                        return
+            if event.type == pygame.KEYDOWN:
+                if self.game_over:
+                    if event.key == pygame.K_SPACE:
+                        self.reset_game()
+                    return
 
-                    if event.key == pygame.K_UP and self.snake.direction != DOWN:
-                        self.snake.direction = UP
-                    elif event.key == pygame.K_DOWN and self.snake.direction != UP:
-                        self.snake.direction = DOWN
-                    elif event.key == pygame.K_LEFT and self.snake.direction != RIGHT:
-                        self.snake.direction = LEFT
-                    elif event.key == pygame.K_RIGHT and self.snake.direction != LEFT:
-                        self.snake.direction = RIGHT
+                if event.key == pygame.K_UP and self.snake.direction != DOWN:
+                    self.snake.direction = UP
+                elif event.key == pygame.K_DOWN and self.snake.direction != UP:
+                    self.snake.direction = DOWN
+                elif event.key == pygame.K_LEFT and self.snake.direction != RIGHT:
+                    self.snake.direction = LEFT
+                elif event.key == pygame.K_RIGHT and self.snake.direction != LEFT:
+                    self.snake.direction = RIGHT
 
     def update(self):
         if not self.game_over:
             current_time = time.time()
             if current_time - self.last_move_time >= self.move_delay:
-                # Get AI move if enabled
-                if AI_ENABLED and self.ai:
-                    next_direction = self.ai.get_next_move()
-                    self.snake.direction = next_direction
-
                 new_head = self.snake.move()
                 self.last_move_time = current_time
                 
