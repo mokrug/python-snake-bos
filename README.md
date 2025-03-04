@@ -2,7 +2,8 @@
 
 A classic Snake Game implementation using Python and Pygame - Educational project for BOS Computer Science presentation.
 
-[Screenshot coming soon]
+![Screenshot 2025-03-04 at 08 30 45](https://github.com/user-attachments/assets/436f5060-adea-4f14-b83d-df3ebbd7c7bb)
+
 
 ## 📝 Project Description
 
