@@ -25,7 +25,26 @@ A modern take on the classic Snake game where players control a snake to collect
 - Pygame
 - Random Module
 
-## ⚙️ Installation
+## 🚀 Installation
 
 1. Make sure you have Python 3.x installed
 2. Clone this repository:
+   ```bash
+   git clone https://github.com/mokrug/python-snake-bos.git
+   cd python-snake-bos
+   ```
+3. Install required dependencies:
+   ```bash
+   pip install pygame
+   ```
+
+## 🎯 How to Play
+
+1. Run the game:
+   ```bash
+   python main.py
+   ```
+2. Use arrow keys to control the snake
+3. Collect red food to grow and increase your score
+4. Avoid hitting walls and the snake's own body
+5. Press SPACE to restart when game is over
